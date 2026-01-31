@@ -122,7 +122,7 @@ class PlotManager:
 {hashes} Descent Narrative: {title}
 * **Start:** x = {start_x:.4f} | **End:** x = {end_x:.4f}
 * **Total Shift:** {end_x - start_x:.4f} in the x-dimension.
-* **Parameters:** Learning rate ($\gamma$) = {gamma}.
+* **Parameters:** Learning rate ($\\gamma$) = {gamma}.
 ---
 """
         display(Markdown(summary_md))
@@ -248,7 +248,7 @@ class PlotManager:
 ### Descent Narrative: {title}
 * **Starting Coordinates:** ({start.x:.4f}, {start.y:.4f}) with value **{start.z:.4f}**.
 * **Final Coordinates:** ({end.x:.4f}, {end.y:.4f}) with value **{end.z:.4f}**.
-* **Learning Rate ($\gamma$):** {gamma}
+* **Learning Rate ($\\gamma$):** {gamma}
 * **Path Observation:** The algorithm moved through **{len(path_df)-1}** steps of descent.
 ---
 """
