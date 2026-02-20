@@ -25,7 +25,7 @@ class Reporter:
         rpt = f"""
 {header} {self.title}
 
-{header}# Solving with
+{header}# Solving with parameters
 - $a = {self.a}$
 - $u = {self.u}$
 {header}# Unperturbed Problem
