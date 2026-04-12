@@ -190,13 +190,13 @@ def apply_network(network, X):
     return X
 
 
-def tabulate_values_2d(network):
+def tabulate_values_2d(network, num_points):
     """
     Tabulates the output of a neural network with 2D input and 1D output.
     """
 
     # make a grid to evaluate on
-    v = np.linspace(-2, 2, 5)
+    v = np.linspace(-2, 2, num_points)
     x1, x2 = np.meshgrid(v, v)
     X = np.c_[x1.ravel(), x2.ravel()]
 
@@ -214,7 +214,7 @@ def tabulate_values_2d(network):
     for x in v:
         html += f"<th scope='col'>{x:.1f}</th>"
     html += "</tr></thead><tbody>"
-    for i, y in enumerate(v):
+    for i, y in reversed(list(enumerate(v))):
         html += f"<tr><th scope='row'>{y:.1f}</th>"
         for j, x in enumerate(v):
             html += f"<td>{Y[i, j]:.1f}</td>"
@@ -223,7 +223,7 @@ def tabulate_values_2d(network):
     display(HTML(html))
 
 
-def visualize_network_2d(network):
+def visualize_network_2d(network, type="3d"):
     """
     Draws a 3D graph of a neural network with 2D input and 1D output.
     """
@@ -237,7 +237,19 @@ def visualize_network_2d(network):
     Y = apply_network(network, X).reshape(x1.shape)
 
     # draw the function graph
-    fig = go.Figure(data=[go.Surface(x=x1, y=x2, z=Y)])
+    if type == "3d":
+        fig = go.Figure(data=[go.Surface(x=x1, y=x2, z=Y)])
+    else:
+        fig = go.Figure(data=[go.Contour(x=v, y=v, z=Y)])
+        fig.update_layout(
+            width=600,
+            height=600,
+            plot_bgcolor="white",  # Removes background grid area
+            yaxis=dict(
+                scaleanchor="x",
+                scaleratio=1,
+            ),
+        )
     fig.show()
 
 
